@@ -1,17 +1,19 @@
-<header class="navbar bg-base-100 border-b border-base-200">
+<header class="navbar bg-base-100 border-b border-base-200 sticky top-0 z-50">
   <div class="container mx-auto px-4">
     <div class="navbar-start">
-      <a href="/" class="btn btn-ghost text-xl">{{ site.name }}</a>
+      <a href="{{ '/' | url }}" class="btn btn-ghost text-xl">{{ site.name }}</a>
     </div>
+
     <div class="navbar-center hidden lg:flex">
       <ul class="menu menu-horizontal px-1">
-        <li><a href="/">Home</a></li>
-        <li><a href="/pages/about/">About</a></li>
-        <li><a href="/schedule/">Schedule</a></li>
+        <li><a href="{{ '/' | url }}">Home</a></li>
+        <li><a href="{{ '/pages/about/' | url }}">About</a></li>
+        <li><a href="{{ '/schedule/' | url }}">Schedule</a></li>
       </ul>
     </div>
+
     <div class="navbar-end">
-      <a class="btn btn-primary" href="/join/">Join</a>
+      <a class="btn btn-primary" href="{{ '/join/' | url }}">Join</a>
     </div>
   </div>
 </header>

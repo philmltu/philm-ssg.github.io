@@ -4,8 +4,12 @@ layout: layouts/base.njk
 <article class="container mx-auto px-4 py-16">
   <header class="mb-6">
     <h1 class="text-4xl font-bold">{{ title }}</h1>
-    {% if date %}<p class="opacity-70">{{ date | date("cccc, yyyy-LL-dd") }}</p>{% endif %}
-    {% if tagline %}<p class="mt-2">{{ tagline }}</p>{% endif %}
+    {% if date %}
+      <p class="opacity-70">{{ date }}</p>
+    {% endif %}
+    {% if tagline %}
+      <p class="mt-2">{{ tagline }}</p>
+    {% endif %}
   </header>
 
   {% if poster %}
@@ -18,8 +22,12 @@ layout: layouts/base.njk
 
   {% if runtime or director %}
   <div class="mt-8 grid gap-2 text-sm opacity-80">
-    {% if director %}<div><span class="font-semibold">Director:</span> {{ director }}</div>{% endif %}
-    {% if runtime %}<div><span class="font-semibold">Runtime:</span> {{ runtime }}</div>{% endif %}
+    {% if director %}
+      <div><span class="font-semibold">Director:</span> {{ director }}</div>
+    {% endif %}
+    {% if runtime %}
+      <div><span class="font-semibold">Runtime:</span> {{ runtime }}</div>
+    {% endif %}
   </div>
   {% endif %}
 </article>
