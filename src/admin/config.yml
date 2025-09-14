@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: your-username/philm1   # <-- change to your repo
+  repo: philmltu/philm1   # <-- change to your repo
   branch: main
   # For local testing without auth you can use:
   # name: test-repo
