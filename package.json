@@ -1,28 +1,21 @@
 {
   "name": "philm1",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "private": true,
+  "description": "Eleventy + Tailwind v4 + daisyUI starter",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build:css": "npx @tailwindcss/cli -i ./src/assets/css/input.css -o ./dist/css/styles.css --minify --content \"./src/**/*.{njk,md,html}\"",
+    "watch:css": "npx @tailwindcss/cli -i ./src/assets/css/input.css -o ./dist/css/styles.css --watch --content \"./src/**/*.{njk,md,html}\"",
+    "build:11ty": "eleventy",
+    "serve:11ty": "eleventy --serve",
+    "build": "run-s build:css build:11ty",
+    "dev": "concurrently -k \"npm:watch:css\" \"npm:serve:11ty\""
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/philmltu/philm1.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/philmltu/philm1/issues"
-  },
-  "homepage": "https://github.com/philmltu/philm1#readme",
   "devDependencies": {
-    "@11ty/eleventy": "^3.1.2",
-    "@tailwindcss/cli": "^4.1.13",
-    "concurrently": "^9.2.1",
-    "daisyui": "^5.1.10",
+    "@11ty/eleventy": "^3.0.0",
+    "@tailwindcss/cli": "^4.0.0",
+    "concurrently": "^9.0.0",
+    "daisyui": "^5.0.0",
     "npm-run-all": "^4.1.5"
   }
 }

@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+/* Register daisyUI plugin (v5) in CSS on Tailwind v4 */
+@plugin "daisyui";
+
+/* Optional: theme tokens (choose a built-in by setting data-theme on <html>) */
+/* html[data-theme="dark"] is already good for a cinema vibe */
+
+/* Your tiny custom tweaks */
+.container { max-width: 1100px; }

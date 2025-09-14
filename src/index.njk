@@ -1,0 +1,31 @@
+---
+title: Home
+layout: layouts/base.njk
+---
+<section class="hero min-h-[70vh] bg-base-200">
+  <div class="hero-content text-center">
+    <div class="max-w-2xl">
+      <h1 class="text-5xl font-bold">Sunday Screenings</h1>
+      <p class="py-6">Carefully curated films every week. Join us for talks, snacks, and cinema vibes.</p>
+      <a class="btn btn-primary" href="/schedule/">See schedule</a>
+    </div>
+  </div>
+</section>
+
+<section class="container mx-auto px-4 py-16">
+  <h2 class="text-3xl font-bold mb-6">Upcoming</h2>
+  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <!-- Sample card -->
+    <article class="card bg-base-100 shadow-lg">
+      <figure class="aspect-[3/4] bg-base-300"></figure>
+      <div class="card-body">
+        <h3 class="card-title">Movie Title</h3>
+        <p>Short blurb about the screening.</p>
+        <div class="card-actions justify-end">
+          <a class="btn btn-outline" href="/schedule/">Details</a>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+

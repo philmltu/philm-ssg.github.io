@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en" data-theme="{{ site.theme }}">
+  <head>
+    {% include "partials/head.njk" %}
+  </head>
+  <body class="min-h-screen flex flex-col">
+    {% include "partials/header.njk" %}
+
+    <main class="flex-1">
+      {{ content | safe }}
+    </main>
+
+    {% include "partials/footer.njk" %}
+  </body>
+</html>

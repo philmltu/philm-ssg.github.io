@@ -1,0 +1,27 @@
+<footer class="bg-neutral text-neutral-content">
+  <div class="container mx-auto px-4 py-10">
+    <div class="grid gap-8 md:grid-cols-3">
+      <aside>
+        <h2 class="font-bold text-lg mb-2">{{ site.name }}</h2>
+        <p>{{ site.description }}</p>
+      </aside>
+      <nav>
+        <h3 class="font-semibold mb-2">Links</h3>
+        <ul class="space-y-1">
+          <li><a class="link link-hover" href="/contact/">Contact</a></li>
+          <li><a class="link link-hover" href="/privacy/">Privacy</a></li>
+        </ul>
+      </nav>
+      <nav>
+        <h3 class="font-semibold mb-2">Follow</h3>
+        <ul class="space-y-1">
+          <li><a class="link link-hover" href="#">Instagram</a></li>
+          <li><a class="link link-hover" href="#">Letterboxd</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="mt-8 text-sm opacity-70">
+      © {{ "" | currentYear }} {{ site.name }}. All rights reserved.
+    </div>
+  </div>
+</footer>
