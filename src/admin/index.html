@@ -3,18 +3,19 @@
   <head>
     <meta charset="utf-8" />
     <title>PHILM Admin</title>
+    <!-- Netlify Identity widget: login, invites, password recovery -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   </head>
   <body>
-    <!-- Decap CMS -->
+    <!-- Decap CMS app -->
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 
     <script>
-      // Ensure Identity widget shows login / reset forms
+      // Smooth UX after login/reset
       if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", (user) => {
+        window.netlifyIdentity.on("init", function (user) {
           if (!user) {
-            window.netlifyIdentity.on("login", () => {
+            window.netlifyIdentity.on("login", function () {
               document.location.href = "/admin/";
             });
           }

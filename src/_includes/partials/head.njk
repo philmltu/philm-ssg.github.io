@@ -4,3 +4,15 @@
 <meta name="description" content="{{ site.description }}">
 
 <link rel="stylesheet" href="{{ '/assets/css/styles.css' | url }}">
+
+{# --- Netlify Identity hash router: send tokens to /admin/ --- #}
+<script>
+  (function () {
+    var h = window.location.hash || "";
+    // Netlify Identity uses #recovery_token and #invite_token
+    if (h.startsWith("#recovery_token=") || h.startsWith("#invite_token=")) {
+      var target = "{{ '/admin/' | url }}" + h; // keep token intact
+      window.location.replace(target);
+    }
+  })();
+</script>
