@@ -1,24 +1,32 @@
 backend:
-  # Use GitHub when deployed (Netlify/Vercel/GitHub Pages)
   name: github
   repo: philmltu/philm1
   branch: main
 
-# Allow local editing without GitHub auth (writes straight to your repo on disk)
-local_backend: true
+  # 👇 REQUIRED for GitHub Pages: point to your OAuth server (NOT your Pages site)
+  # Examples:
+  #   base_url: https://cms-auth.example.com
+  #   auth_endpoint: /oauth/authorize
+  #   (Your OAuth server’s README will tell you the exact path.)
+  base_url: https://YOUR-OAUTH-SERVER.DOMAIN
+  auth_endpoint: /oauth/authorize
 
-media_folder: "src/uploads"   # where uploaded files are stored in the repo
-public_folder: "/uploads"     # how the files are referenced in the site
+# Optional: if you also want local editing without GitHub auth,
+# keep this true for local dev and run `npx decap-cms-proxy-server`
+# local_backend: true
 
-publish_mode: editorial_workflow   # optional: adds drafts/review flow in the CMS UI
+media_folder: "src/uploads"
+public_folder: "/uploads"
+
+publish_mode: editorial_workflow  # drafts/review flow (optional)
 
 collections:
   - name: "movies"
     label: "Movies"
     folder: "src/movies"
     create: true
-    extension: "md"          # force .md files
-    format: "frontmatter"    # YAML front matter + markdown body
+    extension: "md"
+    format: "frontmatter"
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
