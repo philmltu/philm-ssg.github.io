@@ -1,24 +1,13 @@
 backend:
-  name: github
-  repo: philmltu/philm1
+  name: git-gateway
   branch: main
 
-  # 👇 REQUIRED for GitHub Pages: point to your OAuth server (NOT your Pages site)
-  # Examples:
-  #   base_url: https://cms-auth.example.com
-  #   auth_endpoint: /oauth/authorize
-  #   (Your OAuth server’s README will tell you the exact path.)
-  base_url: https://YOUR-OAUTH-SERVER.DOMAIN
-  auth_endpoint: /oauth/authorize
-
-# Optional: if you also want local editing without GitHub auth,
-# keep this true for local dev and run `npx decap-cms-proxy-server`
-# local_backend: true
+local_backend: false   # set to true only if you want to edit locally with the proxy
 
 media_folder: "src/uploads"
 public_folder: "/uploads"
 
-publish_mode: editorial_workflow  # drafts/review flow (optional)
+publish_mode: editorial_workflow  # drafts+reviews; remove if you want instant publish
 
 collections:
   - name: "movies"

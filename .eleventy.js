@@ -1,40 +1,28 @@
-// .eleventy.js
 module.exports = function (eleventyConfig) {
-  // ---- Passthroughs ----
+  // Passthroughs
   eleventyConfig.addPassthroughCopy({ "dist": "assets" });
   eleventyConfig.addPassthroughCopy({ "src/admin": "admin" });
   eleventyConfig.addPassthroughCopy({ "src/uploads": "uploads" });
   eleventyConfig.addPassthroughCopy({ "src/assets/posters": "assets/posters" });
 
-  // ---- Filters ----
+  // Filters
   eleventyConfig.addFilter("currentYear", () => new Date().getFullYear());
-
   eleventyConfig.addFilter("readableDate", (value) => {
     const d = value instanceof Date ? value : new Date(value);
-    return d.toLocaleDateString("en-GB", {
-      year: "numeric",
-      month: "long",
-      day: "2-digit",
-    });
+    return d.toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "2-digit" });
   });
 
-  // ---- Collections ----
+  // Collections
   eleventyConfig.addCollection("movies", (collection) =>
     collection.getFilteredByGlob("./src/movies/*.md").sort((a, b) =>
       new Date(a.data.date) - new Date(b.data.date)
     )
   );
 
-  // ---- Return config ----
   return {
-    dir: {
-      input: "src",
-      output: "_site",
-      includes: "_includes",
-      data: "_data",
-    },
+    dir: { input: "src", output: "_site", includes: "_includes", data: "_data" },
     markdownTemplateEngine: "njk",
     htmlTemplateEngine: "njk",
-    templateFormats: ["njk", "md", "html"],
+    templateFormats: ["njk", "md", "html"]
   };
 };

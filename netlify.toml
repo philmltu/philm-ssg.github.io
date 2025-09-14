@@ -1,0 +1,15 @@
+[build]
+  command = "npm ci && npm run build"
+  publish = "_site"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Optional, keeps settings explicit for production too
+[context.production]
+  command = "npm ci && npm run build"
+
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"

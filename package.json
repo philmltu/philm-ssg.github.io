@@ -8,11 +8,11 @@
     "watch:css": "npx @tailwindcss/cli -i ./src/assets/css/input.css -o ./dist/css/styles.css --watch --content \"./src/**/*.{njk,md,html}\"",
     "build:11ty": "eleventy",
     "serve:11ty": "eleventy --serve",
-    "build": "run-s build:css build:11ty",
+    "build": "npm run build:css && npm run build:11ty",
     "dev": "concurrently -k \"npm:watch:css\" \"npm:serve:11ty\""
   },
   "devDependencies": {
-    "@11ty/eleventy": "^3.0.0",
+    "@11ty/eleventy": "^3.1.2",
     "@tailwindcss/cli": "^4.0.0",
     "concurrently": "^9.0.0",
     "daisyui": "^5.0.0",
