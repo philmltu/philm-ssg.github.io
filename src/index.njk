@@ -2,12 +2,15 @@
 title: Home
 layout: layouts/base.njk
 ---
-<section class="hero min-h-[70vh] bg-base-200">
-  <div class="hero-content text-center">
+<section
+  class="hero min-h-[70vh] bg-base-200"
+  style="{% if site.heroBg and site.heroBg != '' %}background-image:url('{{ site.heroBg | url }}'); background-size:cover; background-position:center;{% endif %}"
+>
+  <div class="hero-content text-center backdrop-blur-[2px]">
     <div class="max-w-2xl">
-      <h1 class="text-5xl font-bold">Sunday Screenings</h1>
-      <p class="py-6">Carefully curated films every week. Join us for talks, snacks, and cinema vibes.</p>
-      <a class="btn btn-primary" href="{{ '/schedule/' | url }}">See schedule</a>
+      <h1 class="text-5xl font-bold">{{ site.heroTitle }}</h1>
+      <p class="py-6">{{ site.heroSubtitle }}</p>
+      <a class="btn btn-primary" href="{{ '/schedule/' | url }}">{{ site.heroButtonText }}</a>
     </div>
   </div>
 </section>
@@ -15,7 +18,6 @@ layout: layouts/base.njk
 <section class="container mx-auto px-4 py-16">
   <h2 class="text-3xl font-bold mb-6">Upcoming</h2>
   <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-    {# Nunjucks uses 'in', not 'of' #}
     {% for movie in collections.movies | reverse | head(6) %}
       <a href="{{ movie.url | url }}" class="card bg-base-100 shadow-lg hover:shadow-xl transition overflow-hidden">
         <figure class="aspect-[3/4] bg-base-300">

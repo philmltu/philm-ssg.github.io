@@ -2,12 +2,12 @@ backend:
   name: git-gateway
   branch: main
 
-local_backend: false   # set to true only if you want to edit locally with the proxy
+local_backend: false
 
 media_folder: "src/uploads"
 public_folder: "/uploads"
 
-publish_mode: editorial_workflow  # drafts+reviews; remove if you want instant publish
+publish_mode: editorial_workflow
 
 collections:
   - name: "movies"
@@ -35,3 +35,18 @@ collections:
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Body (HTML/Nunjucks ok)", name: "body", widget: "text" }
+
+  - name: "settings"
+    label: "Settings"
+    files:
+      - label: "Site Settings"
+        name: "site"
+        file: "src/_data/site.json"
+        fields:
+          - { label: "Site name", name: "name", widget: "string" }
+          - { label: "Tagline / Description", name: "description", widget: "string" }
+          - { label: "Theme (daisyUI)", name: "theme", widget: "string", default: "dark", hint: "Ex: dark, light, synthwave, cupcake, corporate ..." }
+          - { label: "Hero Title", name: "heroTitle", widget: "string" }
+          - { label: "Hero Subtitle", name: "heroSubtitle", widget: "string" }
+          - { label: "Hero Button Text", name: "heroButtonText", widget: "string", default: "See schedule" }
+          - { label: "Hero Background", name: "heroBg", widget: "image", required: false, hint: "Leave empty for solid bg" }
