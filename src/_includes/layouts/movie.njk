@@ -1,0 +1,26 @@
+---
+layout: layouts/base.njk
+---
+<article class="container mx-auto px-4 py-16">
+  <header class="mb-6">
+    <h1 class="text-4xl font-bold">{{ title }}</h1>
+    {% if date %}<p class="opacity-70">{{ date | date: "%A, %Y-%m-%d" }}</p>{% endif %}
+    {% if tagline %}<p class="mt-2">{{ tagline }}</p>{% endif %}
+  </header>
+
+  {% if poster %}
+    <img class="rounded-2xl mb-8 max-w-md" src="{{ poster | url }}" alt="{{ title }} poster">
+  {% endif %}
+
+  <div class="prose prose-invert">
+    {{ content | safe }}
+  </div>
+
+  {% if runtime or director %}
+  <div class="mt-8 grid gap-2 text-sm opacity-80">
+    {% if director %}<div><span class="font-semibold">Director:</span> {{ director }}</div>{% endif %}
+    {% if runtime %}<div><span class="font-semibold">Runtime:</span> {{ runtime }}</div>{% endif %}
+  </div>
+  {% endif %}
+</article>
+

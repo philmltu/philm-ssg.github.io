@@ -1,0 +1,37 @@
+backend:
+  name: github
+  repo: your-username/philm1   # <-- change to your repo
+  branch: main
+  # For local testing without auth you can use:
+  # name: test-repo
+
+media_folder: "src/uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "movies"
+    label: "Movies"
+    folder: "src/movies"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Tagline", name: "tagline", widget: "string", required: false }
+      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
+      - { label: "Poster", name: "poster", widget: "image", required: false }
+      - { label: "Director", name: "director", widget: "string", required: false }
+      - { label: "Runtime", name: "runtime", widget: "string", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
+    # layout is set by front matter default via file path, but you can force:
+    # meta:
+    #   path: { widget: "hidden", default: "movies" }
+
+  - name: "pages"
+    label: "Pages"
+    files:
+      - label: "About"
+        name: "about"
+        file: "src/pages/about.njk"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body (HTML/Nunjucks ok)", name: "body", widget: "text" }
