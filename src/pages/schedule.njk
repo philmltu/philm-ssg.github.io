@@ -17,11 +17,18 @@ permalink: "/schedule/index.html"
           {% endif %}
           {% if movie.data.date %}
             <div class="text-sm opacity-70">
-              {{ movie.data.date }}
+              {{ movie.data.date | readableDate }}
             </div>
           {% endif %}
+
         </div>
       </a>
     {% endfor %}
   </div>
 </div>
+
+{% if movie.data.date %}
+  <div class="text-sm opacity-70">
+    {{ movie.data.date | readableDate }}
+  </div>
+{% endif %}

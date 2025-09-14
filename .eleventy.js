@@ -9,6 +9,15 @@ module.exports = function (eleventyConfig) {
   // ---- Filters ----
   eleventyConfig.addFilter("currentYear", () => new Date().getFullYear());
 
+  eleventyConfig.addFilter("readableDate", (value) => {
+    const d = value instanceof Date ? value : new Date(value);
+    return d.toLocaleDateString("en-GB", {
+      year: "numeric",
+      month: "long",
+      day: "2-digit",
+    });
+  });
+
   // ---- Collections ----
   eleventyConfig.addCollection("movies", (collection) =>
     collection.getFilteredByGlob("./src/movies/*.md").sort((a, b) =>

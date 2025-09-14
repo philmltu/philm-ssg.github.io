@@ -1,18 +1,24 @@
 backend:
+  # Use GitHub when deployed (Netlify/Vercel/GitHub Pages)
   name: github
-  repo: philmltu/philm1   # <-- change to your repo
+  repo: philmltu/philm1
   branch: main
-  # For local testing without auth you can use:
-  # name: test-repo
 
-media_folder: "src/uploads"
-public_folder: "/uploads"
+# Allow local editing without GitHub auth (writes straight to your repo on disk)
+local_backend: true
+
+media_folder: "src/uploads"   # where uploaded files are stored in the repo
+public_folder: "/uploads"     # how the files are referenced in the site
+
+publish_mode: editorial_workflow   # optional: adds drafts/review flow in the CMS UI
 
 collections:
   - name: "movies"
     label: "Movies"
     folder: "src/movies"
     create: true
+    extension: "md"          # force .md files
+    format: "frontmatter"    # YAML front matter + markdown body
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
@@ -22,9 +28,6 @@ collections:
       - { label: "Director", name: "director", widget: "string", required: false }
       - { label: "Runtime", name: "runtime", widget: "string", required: false }
       - { label: "Body", name: "body", widget: "markdown" }
-    # layout is set by front matter default via file path, but you can force:
-    # meta:
-    #   path: { widget: "hidden", default: "movies" }
 
   - name: "pages"
     label: "Pages"

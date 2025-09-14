@@ -4,9 +4,9 @@ layout: layouts/base.njk
 <article class="container mx-auto px-4 py-16">
   <header class="mb-6">
     <h1 class="text-4xl font-bold">{{ title }}</h1>
-    {% if date %}
-      <p class="opacity-70">{{ date }}</p>
-    {% endif %}
+  {% if date %}
+    <p class="opacity-70">{{ date | readableDate }}</p>
+  {% endif %}
     {% if tagline %}
       <p class="mt-2">{{ tagline }}</p>
     {% endif %}
@@ -31,3 +31,6 @@ layout: layouts/base.njk
   </div>
   {% endif %}
 </article>
+
+
+
