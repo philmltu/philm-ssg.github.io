@@ -1,0 +1,19 @@
+{% extends "layouts/base.njk" %}
+
+{% block content %}
+<h1>🎬 Latest Movies</h1>
+<ul class="post-list">
+  {% for post in collections.posts | reverse | slice(0,5) %}
+    <li>
+      <a href="{{ post.url }}">
+        <h2>{{ post.data.title }}</h2>
+      </a>
+      <p><small>{{ post.date | friendlyDate }}</small></p>
+      {% if post.data.image %}
+        <img src="{{ post.data.image }}" alt="{{ post.data.title }}" class="thumb">
+      {% endif %}
+      <p>{{ post.data.description }}</p>
+    </li>
+  {% endfor %}
+</ul>
+{% endblock %}

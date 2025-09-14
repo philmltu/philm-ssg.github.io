@@ -1,0 +1,12 @@
+{
+  "name": "philm-website",
+  "version": "1.0.0",
+  "description": "PHILM – Student Film Club site built with Eleventy",
+  "scripts": {
+    "start": "npx @11ty/eleventy --serve",
+    "build": "npx @11ty/eleventy"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0"
+  }
+}
