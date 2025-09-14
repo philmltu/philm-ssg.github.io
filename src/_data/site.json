@@ -1,11 +1,9 @@
-
 {
   "name": "PHILM",
   "description": "A film club that screens great movies every Sunday.",
   "theme": "dark",
-
   "heroTitle": "Sunday Screenings",
   "heroSubtitle": "Carefully curated films every week. Join us for talks, snacks, and cinema vibes.",
   "heroButtonText": "See schedule",
-  "heroBg": "/uploads/hero.jpg" 
+  "heroBg": "/uploads/20748380_1698591866820770_2058446907230566874_o-1.png"
 }
