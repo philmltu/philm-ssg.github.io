@@ -1,10 +1,11 @@
 @import "tailwindcss";
 
-/* Register daisyUI plugin (v5) in CSS on Tailwind v4 */
+/* Plugins for Tailwind v4 are added in CSS */
 @plugin "daisyui";
+@plugin "@tailwindcss/typography";
 
-/* Optional: theme tokens (choose a built-in by setting data-theme on <html>) */
-/* html[data-theme="dark"] is already good for a cinema vibe */
-
-/* Your tiny custom tweaks */
+/* Small site tweaks */
 .container { max-width: 1100px; }
+
+/* Optional: nicer images in cards */
+.card img { display: block; width: 100%; height: 100%; object-fit: cover; }

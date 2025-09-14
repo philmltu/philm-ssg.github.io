@@ -15,16 +15,25 @@ layout: layouts/base.njk
 <section class="container mx-auto px-4 py-16">
   <h2 class="text-3xl font-bold mb-6">Upcoming</h2>
   <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-    <!-- Sample card -->
-    <article class="card bg-base-100 shadow-lg">
-      <figure class="aspect-[3/4] bg-base-300"></figure>
-      <div class="card-body">
-        <h3 class="card-title">Movie Title</h3>
-        <p>Short blurb about the screening.</p>
-        <div class="card-actions justify-end">
-          <a class="btn btn-outline" href="{{ '/schedule/' | url }}">Details</a>
+    {% for movie of collections.movies | reverse | head(6) %}
+      <a href="{{ movie.url | url }}" class="card bg-base-100 shadow-lg hover:shadow-xl transition overflow-hidden">
+        <figure class="aspect-[3/4] bg-base-300">
+          {% if movie.data.poster %}
+            <img src="{{ movie.data.poster | url }}" alt="{{ movie.data.title }} poster" loading="lazy" />
+          {% endif %}
+        </figure>
+        <div class="card-body">
+          <h3 class="card-title">{{ movie.data.title }}</h3>
+          {% if movie.data.tagline %}<p class="line-clamp-2">{{ movie.data.tagline }}</p>{% endif %}
+          {% if movie.data.date %}
+            <div class="text-sm opacity-70">{{ movie.data.date | readableDate }}</div>
+          {% endif %}
         </div>
-      </div>
-    </article>
+      </a>
+    {% endfor %}
+  </div>
+
+  <div class="mt-8 text-center">
+    <a class="btn btn-outline" href="{{ '/schedule/' | url }}">View full schedule</a>
   </div>
 </section>

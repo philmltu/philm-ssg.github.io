@@ -2,35 +2,24 @@
 layout: layouts/base.njk
 ---
 <article class="container mx-auto px-4 py-16">
-  <header class="mb-6">
+  <header class="mb-8">
     <h1 class="text-4xl font-bold">{{ title }}</h1>
-  {% if date %}
-    <p class="opacity-70">{{ date | readableDate }}</p>
-  {% endif %}
-    {% if tagline %}
-      <p class="mt-2">{{ tagline }}</p>
-    {% endif %}
+    {% if date %}<p class="opacity-70">{{ date | readableDate }}</p>{% endif %}
+    {% if tagline %}<p class="mt-2 text-lg opacity-90">{{ tagline }}</p>{% endif %}
   </header>
 
   {% if poster %}
-    <img class="rounded-2xl mb-8 max-w-md" src="{{ poster | url }}" alt="{{ title }} poster">
+    <img class="rounded-2xl mb-8 w-full max-w-3xl aspect-[16/9] object-cover" src="{{ poster | url }}" alt="{{ title }} poster">
   {% endif %}
 
-  <div class="prose prose-invert">
+  <div class="prose prose-invert max-w-none">
     {{ content | safe }}
   </div>
 
   {% if runtime or director %}
-  <div class="mt-8 grid gap-2 text-sm opacity-80">
-    {% if director %}
-      <div><span class="font-semibold">Director:</span> {{ director }}</div>
-    {% endif %}
-    {% if runtime %}
-      <div><span class="font-semibold">Runtime:</span> {{ runtime }}</div>
-    {% endif %}
-  </div>
+    <dl class="mt-8 grid gap-2 text-sm opacity-80">
+      {% if director %}<div><dt class="font-semibold inline">Director:</dt> <dd class="inline">{{ director }}</dd></div>{% endif %}
+      {% if runtime %}<div><dt class="font-semibold inline">Runtime:</dt> <dd class="inline">{{ runtime }}</dd></div>{% endif %}
+    </dl>
   {% endif %}
 </article>
-
-
-
