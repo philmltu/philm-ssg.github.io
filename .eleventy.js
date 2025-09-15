@@ -24,9 +24,8 @@ module.exports = function (eleventyConfig) {
 
   // ---- Collections ----
   eleventyConfig.addCollection("movies", (collection) =>
-    collection.getFilteredByGlob("./src/movies/*.md").sort(
-      (a, b) => new Date(a.data.date) - new Date(b.data.date)
-    )
+    collection.getFilteredByGlob("./src/movies/*.md")
+      .sort((a, b) => new Date(a.data.date) - new Date(b.data.date))
   );
 
   return {

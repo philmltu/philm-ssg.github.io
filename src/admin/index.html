@@ -4,14 +4,104 @@
     <meta charset="utf-8" />
     <title>PHILM Admin</title>
 
-    <!-- Netlify Identity -->
+    <!-- Netlify Identity (login, invites, reset) -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
     <!-- Decap CMS -->
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-
-    <!-- Load config -->
-    <link href="config.yml" type="text/yaml" rel="cms-config-url" />
   </head>
-  <body></body>
+  <body>
+    <script>
+      // Initiera först när DOM finns och Decap-scriptet är laddat.
+      window.addEventListener("DOMContentLoaded", () => {
+        // ---- Decap config inline (ersätter config.yml) ----
+        const config = {
+          backend: { name: "git-gateway", branch: "main" },
+          local_backend: false,
+          publish_mode: "editorial_workflow",
+          media_folder: "src/uploads",
+          public_folder: "/uploads",
+
+          collections: [
+            {
+              name: "movies",
+              label: "Movies",
+              folder: "src/movies",
+              create: true,
+              extension: "md",
+              format: "frontmatter",
+              slug: "{{ slug }}",
+              // Alla får posta filmer
+              publish_permissions: { roles: ["admin", "editor", "default"] },
+              fields: [
+                { label: "Title", name: "title", widget: "string" },
+                { label: "Tagline", name: "tagline", widget: "string", required: false },
+                { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" },
+                { label: "Poster", name: "poster", widget: "image", required: false },
+                { label: "Director", name: "director", widget: "string", required: false },
+                { label: "Runtime", name: "runtime", widget: "string", required: false },
+                { label: "Body", name: "body", widget: "markdown" }
+              ],
+              meta: {
+                layout: { widget: "hidden", default: "layouts/movie.njk" }
+              }
+            },
+
+            {
+              name: "pages",
+              label: "Pages",
+              folder: "src/pages",
+              create: true,
+              extension: "njk",
+              format: "frontmatter",
+              slug: "{{ slug }}",
+              // Endast admin får publicera/redigera pages
+              publish_permissions: { roles: ["admin"] },
+              fields: [
+                { label: "Title", name: "title", widget: "string" },
+                { label: "Body", name: "body", widget: "markdown" }
+              ]
+            },
+
+            {
+              name: "settings",
+              label: "Settings",
+              files: [
+                {
+                  label: "Site Settings",
+                  name: "site",
+                  file: "src/_data/site.json",
+                  // Endast admin
+                  publish_permissions: { roles: ["admin"] },
+                  fields: [
+                    { label: "Site name", name: "name", widget: "string" },
+                    { label: "Tagline / Description", name: "description", widget: "string" },
+                    { label: "Theme", name: "theme", widget: "string", default: "dark" },
+                    { label: "Hero Title", name: "heroTitle", widget: "string" },
+                    { label: "Hero Subtitle", name: "heroSubtitle", widget: "string" },
+                    { label: "Hero Button Text", name: "heroButtonText", widget: "string", default: "See schedule" },
+                    { label: "Hero Background", name: "heroBg", widget: "image", required: false }
+                  ]
+                }
+              ]
+            }
+          ]
+        };
+
+        // Kör Decap
+        if (typeof CMS === "undefined") {
+          console.error("Decap CMS script not loaded");
+          return;
+        }
+        CMS.init({ config });
+
+        // ---- (valfritt) logga Identity-fel i konsolen ----
+        if (window.netlifyIdentity) {
+          window.netlifyIdentity.on("error", (err) => {
+            console.error("Netlify Identity error:", err);
+          });
+        }
+      });
+    </script>
+  </body>
 </html>
