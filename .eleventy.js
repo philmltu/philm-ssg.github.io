@@ -1,15 +1,12 @@
 // .eleventy.js
 module.exports = function (eleventyConfig) {
-  // ---- Viktigt: ignorera admin som template-input ----
-  eleventyConfig.ignores.add("src/admin/**");
-
-  // ---- Passthroughs ----
+  // Passthroughs
   eleventyConfig.addPassthroughCopy({ "dist": "assets" });
-  eleventyConfig.addPassthroughCopy({ "src/admin": "admin" });
+  eleventyConfig.addPassthroughCopy({ "src/admin": "admin" });   // copies /admin (incl. config.yml)
   eleventyConfig.addPassthroughCopy({ "src/uploads": "uploads" });
   eleventyConfig.addPassthroughCopy({ "src/assets/posters": "assets/posters" });
 
-  // ---- Filters ----
+  // Filters
   eleventyConfig.addFilter("currentYear", () => new Date().getFullYear());
   eleventyConfig.addFilter("readableDate", (value) => {
     const d = value instanceof Date ? value : new Date(value);
@@ -25,7 +22,7 @@ module.exports = function (eleventyConfig) {
     return arr.slice(0, n);
   });
 
-  // ---- Collections ----
+  // Collections
   eleventyConfig.addCollection("movies", (collection) =>
     collection.getFilteredByGlob("./src/movies/*.md")
       .sort((a, b) => new Date(a.data.date) - new Date(b.data.date))
