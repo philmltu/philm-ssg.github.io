@@ -3,7 +3,6 @@ module.exports = function (eleventyConfig) {
   // ---- Passthroughs ----
   eleventyConfig.addPassthroughCopy({ "dist": "assets" });
   eleventyConfig.addPassthroughCopy({ "src/admin": "admin" });
-  eleventyConfig.addPassthroughCopy({ "src/admin/edit": "admin/edit" });
   eleventyConfig.addPassthroughCopy({ "src/uploads": "uploads" });
   eleventyConfig.addPassthroughCopy({ "src/assets/posters": "assets/posters" });
 
@@ -11,7 +10,11 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("currentYear", () => new Date().getFullYear());
   eleventyConfig.addFilter("readableDate", (value) => {
     const d = value instanceof Date ? value : new Date(value);
-    return d.toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "2-digit" });
+    return d.toLocaleDateString("en-GB", {
+      year: "numeric",
+      month: "long",
+      day: "2-digit",
+    });
   });
   eleventyConfig.addFilter("head", (arr, n) => {
     if (!Array.isArray(arr)) return [];
@@ -21,8 +24,8 @@ module.exports = function (eleventyConfig) {
 
   // ---- Collections ----
   eleventyConfig.addCollection("movies", (collection) =>
-    collection.getFilteredByGlob("./src/movies/*.md").sort((a, b) =>
-      new Date(a.data.date) - new Date(b.data.date)
+    collection.getFilteredByGlob("./src/movies/*.md").sort(
+      (a, b) => new Date(a.data.date) - new Date(b.data.date)
     )
   );
 

@@ -3,11 +3,10 @@ backend:
   branch: main
 
 local_backend: false
+publish_mode: editorial_workflow
 
 media_folder: "src/uploads"
 public_folder: "/uploads"
-
-publish_mode: editorial_workflow
 
 collections:
   - name: "movies"
@@ -16,7 +15,9 @@ collections:
     create: true
     extension: "md"
     format: "frontmatter"
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    slug: "{{ slug }}"
+    publish_permissions:
+      roles: ["admin", "editor", "default"]
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Tagline", name: "tagline", widget: "string", required: false }
@@ -25,16 +26,23 @@ collections:
       - { label: "Director", name: "director", widget: "string", required: false }
       - { label: "Runtime", name: "runtime", widget: "string", required: false }
       - { label: "Body", name: "body", widget: "markdown" }
+    meta:
+      layout:
+        widget: hidden
+        default: "layouts/movie.njk"
 
   - name: "pages"
     label: "Pages"
-    files:
-      - label: "About"
-        name: "about"
-        file: "src/pages/about.njk"
-        fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Body (HTML/Nunjucks ok)", name: "body", widget: "text" }
+    folder: "src/pages"
+    create: true
+    extension: "njk"
+    format: "frontmatter"
+    slug: "{{ slug }}"
+    publish_permissions:
+      roles: ["admin"]
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown" }
 
   - name: "settings"
     label: "Settings"
@@ -42,11 +50,13 @@ collections:
       - label: "Site Settings"
         name: "site"
         file: "src/_data/site.json"
+        publish_permissions:
+          roles: ["admin"]
         fields:
           - { label: "Site name", name: "name", widget: "string" }
           - { label: "Tagline / Description", name: "description", widget: "string" }
-          - { label: "Theme (daisyUI)", name: "theme", widget: "string", default: "dark", hint: "Ex: dark, light, synthwave, cupcake, corporate ..." }
+          - { label: "Theme", name: "theme", widget: "string", default: "dark" }
           - { label: "Hero Title", name: "heroTitle", widget: "string" }
           - { label: "Hero Subtitle", name: "heroSubtitle", widget: "string" }
           - { label: "Hero Button Text", name: "heroButtonText", widget: "string", default: "See schedule" }
-          - { label: "Hero Background", name: "heroBg", widget: "image", required: false, hint: "Leave empty for solid bg" }
+          - { label: "Hero Background", name: "heroBg", widget: "image", required: false }
