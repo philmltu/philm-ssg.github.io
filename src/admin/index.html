@@ -3,21 +3,45 @@
   <head>
     <meta charset="utf-8" />
     <title>PHILM Admin</title>
-    <!-- Netlify Identity widget: login, invites, password recovery -->
+
+    <!-- Identity-widget krävs för login/invite/reset -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  </head>
-  <body>
-    <!-- Decap CMS app -->
+
+    <!-- Ladda Decap CMS -->
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 
+    <!-- Låt Decap använda denna konfig -->
+    <link href="config-admin.yml" type="text/yaml" rel="cms-config-url" />
+  </head>
+  <body>
     <script>
-      // Smooth UX after login/reset
+      // Om användaren inte har rollen 'admin' -> skicka till editor-vyn
+      function hasAdminRole(user) {
+        try {
+          const roles =
+            (user && user.app_metadata && user.app_metadata.roles) || [];
+          return roles.includes("admin");
+        } catch (e) {
+          return false;
+        }
+      }
+
       if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", function (user) {
+        window.netlifyIdentity.on("init", (user) => {
           if (!user) {
-            window.netlifyIdentity.on("login", function () {
-              document.location.href = "/admin/";
+            // Visa login; efter login, kolla rollen igen
+            window.netlifyIdentity.on("login", (u) => {
+              if (!hasAdminRole(u)) {
+                window.location.replace("/admin/edit/");
+              } else {
+                // stanna kvar på /admin/
+                window.location.reload();
+              }
             });
+          } else {
+            if (!hasAdminRole(user)) {
+              window.location.replace("/admin/edit/");
+            }
           }
         });
       }

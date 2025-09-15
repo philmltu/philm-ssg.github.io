@@ -1,0 +1,6 @@
+{
+  "layout": "layouts/base.njk",
+  "eleventyComputed": {
+    "permalink": "pages/{{ page.fileSlug }}/index.html"
+  }
+}
