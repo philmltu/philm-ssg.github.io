@@ -3,18 +3,16 @@ module.exports = function (eleventyConfig) {
   // ---- Passthroughs ----
   eleventyConfig.addPassthroughCopy({ "dist": "assets" });
   eleventyConfig.addPassthroughCopy({ "src/admin": "admin" });
+  eleventyConfig.addPassthroughCopy({ "src/admin/edit": "admin/edit" });
   eleventyConfig.addPassthroughCopy({ "src/uploads": "uploads" });
   eleventyConfig.addPassthroughCopy({ "src/assets/posters": "assets/posters" });
 
   // ---- Filters ----
   eleventyConfig.addFilter("currentYear", () => new Date().getFullYear());
-
   eleventyConfig.addFilter("readableDate", (value) => {
     const d = value instanceof Date ? value : new Date(value);
     return d.toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "2-digit" });
   });
-
-  // Take first/last N items
   eleventyConfig.addFilter("head", (arr, n) => {
     if (!Array.isArray(arr)) return [];
     if (n < 0) return arr.slice(n);
@@ -30,12 +28,7 @@ module.exports = function (eleventyConfig) {
 
   // ---- Return config ----
   return {
-    dir: {
-      input: "src",
-      output: "_site",
-      includes: "_includes",
-      data: "_data",
-    },
+    dir: { input: "src", output: "_site", includes: "_includes", data: "_data" },
     markdownTemplateEngine: "njk",
     htmlTemplateEngine: "njk",
     templateFormats: ["njk", "md", "html"],
