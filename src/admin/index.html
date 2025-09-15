@@ -4,37 +4,29 @@
     <meta charset="utf-8" />
     <title>PHILM Admin</title>
 
-    <!-- Identity-widget krävs för login/invite/reset -->
+    <!-- Identity + Decap -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
-    <!-- Ladda Decap CMS -->
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 
-    <!-- Låt Decap använda denna konfig -->
+    <!-- Load the full admin config (Pages + Settings + Movies) from YAML -->
     <link href="config-admin.yml" type="text/yaml" rel="cms-config-url" />
   </head>
   <body>
     <script>
-      // Om användaren inte har rollen 'admin' -> skicka till editor-vyn
       function hasAdminRole(user) {
         try {
-          const roles =
-            (user && user.app_metadata && user.app_metadata.roles) || [];
+          const roles = (user && user.app_metadata && user.app_metadata.roles) || [];
           return roles.includes("admin");
-        } catch (e) {
-          return false;
-        }
+        } catch (e) { return false; }
       }
 
       if (window.netlifyIdentity) {
         window.netlifyIdentity.on("init", (user) => {
           if (!user) {
-            // Visa login; efter login, kolla rollen igen
             window.netlifyIdentity.on("login", (u) => {
               if (!hasAdminRole(u)) {
                 window.location.replace("/admin/edit/");
               } else {
-                // stanna kvar på /admin/
                 window.location.reload();
               }
             });

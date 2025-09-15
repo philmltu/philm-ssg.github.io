@@ -6,8 +6,6 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/admin/edit": "admin/edit" });
   eleventyConfig.addPassthroughCopy({ "src/uploads": "uploads" });
   eleventyConfig.addPassthroughCopy({ "src/assets/posters": "assets/posters" });
-  eleventyConfig.addPassthroughCopy({ "src/admin/config-editors.yml": "admin/config-editors.yml" });
-
 
   // ---- Filters ----
   eleventyConfig.addFilter("currentYear", () => new Date().getFullYear());
@@ -28,7 +26,6 @@ module.exports = function (eleventyConfig) {
     )
   );
 
-  // ---- Return config ----
   return {
     dir: { input: "src", output: "_site", includes: "_includes", data: "_data" },
     markdownTemplateEngine: "njk",
