@@ -3,28 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <title>PHILM Admin</title>
-
-    <!-- Netlify Identity: login, invites, password recovery -->
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
-    <!-- Decap CMS app -->
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-
-    <!-- Tell Decap exactly where the YAML config is -->
+    <!-- Decap CMS -->
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js" defer></script>
+    <!-- Point to YAML config -->
     <link href="config.yml" type="text/yaml" rel="cms-config-url" />
   </head>
-  <body>
-    <script>
-      // Optional: smooth UX after login/reset
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", function (user) {
-          if (!user) {
-            window.netlifyIdentity.on("login", function () {
-              document.location.href = "/admin/";
-            });
-          }
-        });
-      }
-    </script>
-  </body>
+  <body></body>
 </html>

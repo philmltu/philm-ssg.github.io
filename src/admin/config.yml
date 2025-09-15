@@ -2,14 +2,14 @@ backend:
   name: git-gateway
   branch: main
 
-local_backend: false
+local_backend: true
 publish_mode: editorial_workflow
 
 media_folder: "src/uploads"
 public_folder: "/uploads"
 
 collections:
-  # Movies (date + slug in filename; auto movie layout)
+  # Movies (date + slug in filename; enforce movie layout via hidden field)
   - name: "movies"
     label: "Movies"
     folder: "src/movies"
@@ -18,6 +18,7 @@ collections:
     format: "frontmatter"
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
+      - { label: "Layout", name: "layout", widget: "hidden", default: "layouts/movie.njk" }
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Tagline", name: "tagline", widget: "string", required: false }
       - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
@@ -25,12 +26,8 @@ collections:
       - { label: "Director", name: "director", widget: "string", required: false }
       - { label: "Runtime", name: "runtime", widget: "string", required: false }
       - { label: "Body", name: "body", widget: "markdown" }
-    meta:
-      layout:
-        widget: "hidden"
-        default: "layouts/movie.njk"
 
-  # Pages you can create/edit/delete
+  # Pages (create/edit arbitrary pages)
   - name: "pages"
     label: "Pages"
     folder: "src/pages"
@@ -42,7 +39,7 @@ collections:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Body", name: "body", widget: "markdown" }
 
-  # Global site settings
+  # Global site settings (editable from CMS)
   - name: "settings"
     label: "Settings"
     files:
@@ -58,7 +55,7 @@ collections:
           - { label: "Hero Button Text", name: "heroButtonText", widget: "string", default: "See schedule" }
           - { label: "Hero Background", name: "heroBg", widget: "image", required: false }
 
-  # Edit header/footer/base directly from Decap (advanced)
+  # Edit header/footer/base directly in CMS (advanced)
   - name: "theme"
     label: "Theme Files"
     files:
