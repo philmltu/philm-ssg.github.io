@@ -1,5 +1,8 @@
 // .eleventy.js
 module.exports = function (eleventyConfig) {
+  // ---- Viktigt: ignorera admin som template-input ----
+  eleventyConfig.ignores.add("src/admin/**");
+
   // ---- Passthroughs ----
   eleventyConfig.addPassthroughCopy({ "dist": "assets" });
   eleventyConfig.addPassthroughCopy({ "src/admin": "admin" });
