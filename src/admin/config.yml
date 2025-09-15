@@ -3,13 +3,13 @@ backend:
   branch: main
 
 local_backend: false
+publish_mode: editorial_workflow
 
 media_folder: "src/uploads"
 public_folder: "/uploads"
 
-publish_mode: editorial_workflow
-
 collections:
+  # Movies (date + slug in filename; auto movie layout)
   - name: "movies"
     label: "Movies"
     folder: "src/movies"
@@ -25,17 +25,24 @@ collections:
       - { label: "Director", name: "director", widget: "string", required: false }
       - { label: "Runtime", name: "runtime", widget: "string", required: false }
       - { label: "Body", name: "body", widget: "markdown" }
+    meta:
+      layout:
+        widget: "hidden"
+        default: "layouts/movie.njk"
 
+  # Pages you can create/edit/delete
   - name: "pages"
     label: "Pages"
-    files:
-      - label: "About"
-        name: "about"
-        file: "src/pages/about.njk"
-        fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Body (HTML/Nunjucks ok)", name: "body", widget: "text" }
+    folder: "src/pages"
+    create: true
+    extension: "njk"
+    format: "frontmatter"
+    slug: "{{ slug }}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown" }
 
+  # Global site settings
   - name: "settings"
     label: "Settings"
     files:
@@ -45,8 +52,28 @@ collections:
         fields:
           - { label: "Site name", name: "name", widget: "string" }
           - { label: "Tagline / Description", name: "description", widget: "string" }
-          - { label: "Theme (daisyUI)", name: "theme", widget: "string", default: "dark", hint: "Ex: dark, light, synthwave, cupcake, corporate ..." }
+          - { label: "Theme (daisyUI)", name: "theme", widget: "string", default: "dark" }
           - { label: "Hero Title", name: "heroTitle", widget: "string" }
           - { label: "Hero Subtitle", name: "heroSubtitle", widget: "string" }
           - { label: "Hero Button Text", name: "heroButtonText", widget: "string", default: "See schedule" }
-          - { label: "Hero Background", name: "heroBg", widget: "image", required: false, hint: "Leave empty for solid bg" }
+          - { label: "Hero Background", name: "heroBg", widget: "image", required: false }
+
+  # Edit header/footer/base directly from Decap (advanced)
+  - name: "theme"
+    label: "Theme Files"
+    files:
+      - label: "Header"
+        name: "header"
+        file: "src/_includes/partials/header.njk"
+        fields:
+          - { label: "Header (Nunjucks)", name: "body", widget: "code", default_language: "html", output_code_only: true }
+      - label: "Footer"
+        name: "footer"
+        file: "src/_includes/partials/footer.njk"
+        fields:
+          - { label: "Footer (Nunjucks)", name: "body", widget: "code", default_language: "html", output_code_only: true }
+      - label: "Base Layout"
+        name: "base"
+        file: "src/_includes/layouts/base.njk"
+        fields:
+          - { label: "Base Layout (Nunjucks)", name: "body", widget: "code", default_language: "html", output_code_only: true }
