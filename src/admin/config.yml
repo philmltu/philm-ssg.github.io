@@ -1,4 +1,5 @@
 backend:
+  # Use your backend; for local dev you can set local_backend: true and run npx decap-server
   name: git-gateway
   branch: main
 
@@ -9,7 +10,7 @@ media_folder: "src/uploads"
 public_folder: "/uploads"
 
 collections:
-  # Movies (date + slug in filename; enforce movie layout via hidden field)
+  # Movies (unchanged)
   - name: "movies"
     label: "Movies"
     folder: "src/movies"
@@ -27,19 +28,58 @@ collections:
       - { label: "Runtime", name: "runtime", widget: "string", required: false }
       - { label: "Body", name: "body", widget: "markdown" }
 
-  # Pages (create/edit arbitrary pages)
+  # Editable pages (specific files)
   - name: "pages"
     label: "Pages"
-    folder: "src/pages"
-    create: true
-    extension: "njk"
-    format: "frontmatter"
-    slug: "{{ slug }}"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Body", name: "body", widget: "markdown" }
+    files:
+      - label: "Get membership"
+        name: "membership"
+        file: "src/pages/membership.njk"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Page Background", name: "pageBg", widget: "image", required: false }
+          - { label: "Body (Markdown)", name: "body", widget: "markdown", required: false }
+      - label: "Join the crew"
+        name: "crew"
+        file: "src/pages/crew.njk"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Page Background", name: "pageBg", widget: "image", required: false }
+          - { label: "Body (Markdown)", name: "body", widget: "markdown", required: false }
+      - label: "Book us"
+        name: "bookus"
+        file: "src/pages/book-us.njk"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Page Background", name: "pageBg", widget: "image", required: false }
+          - { label: "Body (Markdown)", name: "body", widget: "markdown", required: false }
+      - label: "Who we are"
+        name: "whoweare"
+        file: "src/pages/who-we-are.njk"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Page Background", name: "pageBg", widget: "image", required: false }
+          - { label: "Body (Markdown)", name: "body", widget: "markdown", required: false }
 
-  # Global site settings (editable from CMS)
+  # Team data (positions with photos)
+  - name: "team"
+    label: "Team"
+    files:
+      - label: "Members"
+        name: "members"
+        file: "src/_data/team.json"
+        fields:
+          - label: "Members"
+            name: "members"
+            widget: "list"
+            summary: "{{fields.name}} — {{fields.role}}"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Role", name: "role", widget: "string" }
+              - { label: "Photo", name: "photo", widget: "image", required: false }
+              - { label: "Bio", name: "bio", widget: "text", required: false }
+
+  # Global site settings you can edit from CMS
   - name: "settings"
     label: "Settings"
     files:
@@ -54,29 +94,7 @@ collections:
           - { label: "Hero Subtitle", name: "heroSubtitle", widget: "string" }
           - { label: "Hero Button Text", name: "heroButtonText", widget: "string", default: "See schedule" }
           - { label: "Hero Background", name: "heroBg", widget: "image", required: false }
-          - { label: "Hitract URL (passive)", name: "hitractUrl", widget: "string" }      # ← new
-          - { label: "Active form URL", name: "activeFormUrl", widget: "string" }          # ← new
-
-
-
-  # Edit header/footer/base directly in CMS (advanced)
-  - name: "theme"
-    label: "Theme Files"
-    files:
-      - label: "Header"
-        name: "header"
-        file: "src/_includes/partials/header.njk"
-        fields:
-          - { label: "Header (Nunjucks)", name: "body", widget: "code", default_language: "html", output_code_only: true }
-      - label: "Footer"
-        name: "footer"
-        file: "src/_includes/partials/footer.njk"
-        fields:
-          - { label: "Footer (Nunjucks)", name: "body", widget: "code", default_language: "html", output_code_only: true }
-      - label: "Base Layout"
-        name: "base"
-        file: "src/_includes/layouts/base.njk"
-        fields:
-          - { label: "Base Layout (Nunjucks)", name: "body", widget: "code", default_language: "html", output_code_only: true }
-
-
+          - { label: "Default Page Background", name: "pageBg", widget: "image", required: false }
+          - { label: "Hitract URL (membership)", name: "hitractUrl", widget: "string" }
+          - { label: "Active crew form URL", name: "activeFormUrl", widget: "string" }
+          - { label: "Booking form URL", name: "bookingFormUrl", widget: "string" }

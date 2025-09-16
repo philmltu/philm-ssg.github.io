@@ -1,13 +1,26 @@
-<!doctype html>
-<html lang="en" data-theme="{{ site.theme }}">
+<!DOCTYPE html>
+<html lang="en" data-theme="{{ site.theme or 'dark' }}">
   <head>
-    {% include "partials/head.njk" %}
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% if title %}{{ title }} — {% endif %}{{ site.name }}</title>
+    <link rel="stylesheet" href="/dist/css/styles.css" />
   </head>
   <body class="min-h-screen flex flex-col">
     {% include "partials/header.njk" %}
 
+    {# Page background image (pageBg) falls back to site.heroBg if set #}
+    {% set bg = page.pageBg or site.pageBg or null %}
     <main class="flex-1">
-      {{ content | safe }}
+      {% if bg %}
+        <div class="relative">
+          <div class="absolute inset-0 -z-10 opacity-30"
+               style="background-image:url('{{ bg }}'); background-size:cover; background-position:center;"></div>
+          {{ content | safe }}
+        </div>
+      {% else %}
+        {{ content | safe }}
+      {% endif %}
     </main>
 
     {% include "partials/footer.njk" %}

@@ -1,0 +1,16 @@
+{
+  "members": [
+    {
+      "name": "Alex Example",
+      "role": "Programmer",
+      "photo": "/uploads/alex.jpg",
+      "bio": "Curates the Sunday lineup and hosts Q&As."
+    },
+    {
+      "name": "Sam Sample",
+      "role": "Designer",
+      "photo": "/uploads/sam.jpg",
+      "bio": "Posters, web visuals, and branding."
+    }
+  ]
+}

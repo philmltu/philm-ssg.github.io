@@ -1,0 +1,29 @@
+---
+title: Get membership
+layout: layouts/base.njk
+permalink: "membership/index.html"
+pageBg: ""
+---
+<section class="container mx-auto px-4 py-12">
+  <h1 class="text-4xl font-bold mb-6">Get membership</h1>
+  <p class="opacity-80 mb-8">Want to watch films with us on Sundays? Become a member in a minute.</p>
+
+  <div class="card bg-base-200 shadow-xl">
+    <div class="card-body">
+      <h2 class="card-title">How it works</h2>
+      <p class="mb-2">Membership gives you updates and access to our screenings.</p>
+      <ul class="list-disc ml-5 my-2 text-sm opacity-80">
+        <li>Sunday screenings</li>
+        <li>Stay in the loop</li>
+        <li>Zero obligations</li>
+      </ul>
+      <div class="card-actions justify-end">
+        {% if site.hitractUrl %}
+          <a href="{{ site.hitractUrl }}" target="_blank" rel="noopener" class="btn btn-primary">Apply on Hitract</a>
+        {% else %}
+          <a class="btn btn-primary btn-disabled" aria-disabled="true" tabindex="-1">Hitract link missing</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>

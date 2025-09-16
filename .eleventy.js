@@ -1,7 +1,7 @@
 // .eleventy.js
 module.exports = function (eleventyConfig) {
   // ---- Passthroughs ----
-  eleventyConfig.addPassthroughCopy({ "dist": "assets" });
+  eleventyConfig.addPassthroughCopy({ "dist": "dist" }); // <-- was "assets"
   eleventyConfig.addPassthroughCopy({ "src/admin": "admin" });
   eleventyConfig.addPassthroughCopy({ "src/uploads": "uploads" });
   eleventyConfig.addPassthroughCopy({ "src/assets/posters": "assets/posters" });

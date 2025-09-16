@@ -1,0 +1,28 @@
+---
+title: Join the crew
+layout: layouts/base.njk
+permalink: "crew/index.html"
+pageBg: ""
+---
+<section class="container mx-auto px-4 py-12">
+  <h1 class="text-4xl font-bold mb-6">Join the crew</h1>
+  <p class="opacity-80 mb-8">We’re a hands-on team that makes PHILM happen — programming, design, hosting screenings, comms, and more.</p>
+
+  <div class="card bg-base-200 shadow-xl">
+    <div class="card-body">
+      <h2 class="card-title">Get involved</h2>
+      <ul class="list-disc ml-5 my-2 text-sm opacity-80">
+        <li>Help choose films & plan events</li>
+        <li>Create posters, manage socials, or run Q&A nights</li>
+        <li>Make PHILM better with your ideas</li>
+      </ul>
+      <div class="card-actions justify-end">
+        {% if site.activeFormUrl %}
+          <a href="{{ site.activeFormUrl }}" target="_blank" rel="noopener" class="btn btn-secondary">Apply via Google Form</a>
+        {% else %}
+          <a class="btn btn-secondary btn-disabled" aria-disabled="true" tabindex="-1">Form link missing</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,24 @@
+---
+title: Book us
+layout: layouts/base.njk
+permalink: "book-us/index.html"
+pageBg: ""
+---
+<section class="container mx-auto px-4 py-12">
+  <h1 class="text-4xl font-bold mb-6">Book us</h1>
+  <p class="opacity-80 mb-8">Want us to host a screening, curate a mini-festival, or run a workshop? Tell us a bit about your idea.</p>
+
+  <div class="card bg-base-200 shadow-xl">
+    <div class="card-body">
+      <h2 class="card-title">How to book</h2>
+      <p class="mb-4">Reach out via the form and we’ll get back to you.</p>
+      <div class="card-actions justify-end">
+        {% if site.bookingFormUrl %}
+          <a href="{{ site.bookingFormUrl }}" target="_blank" rel="noopener" class="btn btn-primary">Open booking form</a>
+        {% else %}
+          <a class="btn btn-primary btn-disabled" aria-disabled="true" tabindex="-1">Booking form link missing</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
