@@ -3,7 +3,7 @@ backend:
   branch: main
 
 local_backend: true
-publish_mode: editorial_workflow
+publish_mode: simple
 
 media_folder: "src/uploads"
 public_folder: "/uploads"
@@ -14,93 +14,26 @@ collections:
     folder: "src/movies"
     create: true
     extension: "md"
-    format: "frontmatter"
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    slug: "{{slug}}"
+    delete: false
     fields:
-      - { label: "Layout", name: "layout", widget: "hidden", default: "layouts/movie.njk" }
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Tagline", name: "tagline", widget: "string", required: false }
       - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
       - { label: "Poster", name: "poster", widget: "image", required: false }
-      - { label: "Director", name: "director", widget: "string", required: false }
       - { label: "Runtime", name: "runtime", widget: "string", required: false }
+      - { label: "Tagline", name: "tagline", widget: "string", required: false }
       - { label: "Body", name: "body", widget: "markdown", required: false }
-
-  - name: "pages"
-    label: "Pages"
-    files:
-      - label: "Get membership"
-        name: "membership"
-        file: "src/pages/membership.njk"
-        fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Page Background", name: "pageBg", widget: "image", required: false }
-          - { label: "Body", name: "body", widget: "markdown", required: false }
-      - label: "Join the crew"
-        name: "crew"
-        file: "src/pages/crew.njk"
-        fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Page Background", name: "pageBg", widget: "image", required: false }
-          - { label: "Body", name: "body", widget: "markdown", required: false }
-      - label: "Book us"
-        name: "bookus"
-        file: "src/pages/book-us.njk"
-        fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Page Background", name: "pageBg", widget: "image", required: false }
-          - { label: "Body", name: "body", widget: "markdown", required: false }
-      - label: "Who we are"
-        name: "whoweare"
-        file: "src/pages/who-we-are.njk"
-        fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Page Background", name: "pageBg", widget: "image", required: false }
-          - { label: "Body", name: "body", widget: "markdown", required: false }
-      - label: "About"
-        name: "about"
-        file: "src/pages/about.njk"
-        fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Page Background", name: "pageBg", widget: "image", required: false }
-          - { label: "Body", name: "body", widget: "markdown", required: false }
-      - label: "Schedule"
-        name: "schedule"
-        file: "src/pages/schedule.njk"
-        fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Page Background", name: "pageBg", widget: "image", required: false }
-          - { label: "Body", name: "body", widget: "markdown", required: false }
 
   - name: "team"
     label: "Team"
     folder: "src/team"
     create: true
-    slug: "{{slug}}"
     extension: "md"
-    format: "frontmatter"
+    slug: "{{slug}}"
+    delete: false
     fields:
-      - { label: "Name", name: "name", widget: "string" }
-      - { label: "Role", name: "role", widget: "string" }
+      - { label: "Name",  name: "name",  widget: "string" }
+      - { label: "Role",  name: "role",  widget: "string", required: false }
       - { label: "Photo", name: "photo", widget: "image", required: false }
-      - { label: "Order", name: "order", widget: "number", required: false, hint: "Lower shows first" }
-      - { label: "Bio", name: "body", widget: "markdown", required: false }
-
-  - name: "settings"
-    label: "Settings"
-    files:
-      - label: "Site Settings"
-        name: "site"
-        file: "src/_data/site.json"
-        fields:
-          - { label: "Site name", name: "name", widget: "string" }
-          - { label: "Tagline / Description", name: "description", widget: "string" }
-          - { label: "Theme (daisyUI)", name: "theme", widget: "string", default: "dark" }
-          - { label: "Hero Title", name: "heroTitle", widget: "string" }
-          - { label: "Hero Subtitle", name: "heroSubtitle", widget: "string" }
-          - { label: "Hero Button Text", name: "heroButtonText", widget: "string", default: "See schedule" }
-          - { label: "Hero Background", name: "heroBg", widget: "image", required: false }
-          - { label: "Default Page Background", name: "pageBg", widget: "image", required: false }
-          - { label: "Hitract URL (membership)", name: "hitractUrl", widget: "string" }
-          - { label: "Active crew form URL", name: "activeFormUrl", widget: "string" }
-          - { label: "Booking form URL", name: "bookingFormUrl", widget: "string" }
+      - { label: "Order", name: "order", widget: "number", valueType: "int", min: 0, default: 0 }
+      - { label: "Bio",   name: "body",  widget: "markdown", required: false }
