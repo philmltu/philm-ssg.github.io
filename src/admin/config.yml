@@ -1,5 +1,4 @@
 backend:
-  # Use your backend; for local dev you can set local_backend: true and run npx decap-server
   name: git-gateway
   branch: main
 
@@ -10,7 +9,6 @@ media_folder: "src/uploads"
 public_folder: "/uploads"
 
 collections:
-  # Movies (unchanged)
   - name: "movies"
     label: "Movies"
     folder: "src/movies"
@@ -26,9 +24,8 @@ collections:
       - { label: "Poster", name: "poster", widget: "image", required: false }
       - { label: "Director", name: "director", widget: "string", required: false }
       - { label: "Runtime", name: "runtime", widget: "string", required: false }
-      - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Body", name: "body", widget: "markdown", required: false }
 
-  # Editable pages (specific files)
   - name: "pages"
     label: "Pages"
     files:
@@ -38,48 +35,57 @@ collections:
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Page Background", name: "pageBg", widget: "image", required: false }
-          - { label: "Body (Markdown)", name: "body", widget: "markdown", required: false }
+          - { label: "Body", name: "body", widget: "markdown", required: false }
       - label: "Join the crew"
         name: "crew"
         file: "src/pages/crew.njk"
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Page Background", name: "pageBg", widget: "image", required: false }
-          - { label: "Body (Markdown)", name: "body", widget: "markdown", required: false }
+          - { label: "Body", name: "body", widget: "markdown", required: false }
       - label: "Book us"
         name: "bookus"
         file: "src/pages/book-us.njk"
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Page Background", name: "pageBg", widget: "image", required: false }
-          - { label: "Body (Markdown)", name: "body", widget: "markdown", required: false }
+          - { label: "Body", name: "body", widget: "markdown", required: false }
       - label: "Who we are"
         name: "whoweare"
         file: "src/pages/who-we-are.njk"
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Page Background", name: "pageBg", widget: "image", required: false }
-          - { label: "Body (Markdown)", name: "body", widget: "markdown", required: false }
+          - { label: "Body", name: "body", widget: "markdown", required: false }
+      - label: "About"
+        name: "about"
+        file: "src/pages/about.njk"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Page Background", name: "pageBg", widget: "image", required: false }
+          - { label: "Body", name: "body", widget: "markdown", required: false }
+      - label: "Schedule"
+        name: "schedule"
+        file: "src/pages/schedule.njk"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Page Background", name: "pageBg", widget: "image", required: false }
+          - { label: "Body", name: "body", widget: "markdown", required: false }
 
-  # Team data (positions with photos)
   - name: "team"
     label: "Team"
-    files:
-      - label: "Members"
-        name: "members"
-        file: "src/_data/team.json"
-        fields:
-          - label: "Members"
-            name: "members"
-            widget: "list"
-            summary: "{{fields.name}} — {{fields.role}}"
-            fields:
-              - { label: "Name", name: "name", widget: "string" }
-              - { label: "Role", name: "role", widget: "string" }
-              - { label: "Photo", name: "photo", widget: "image", required: false }
-              - { label: "Bio", name: "bio", widget: "text", required: false }
+    folder: "src/team"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Role", name: "role", widget: "string" }
+      - { label: "Photo", name: "photo", widget: "image", required: false }
+      - { label: "Order", name: "order", widget: "number", required: false, hint: "Lower shows first" }
+      - { label: "Bio", name: "body", widget: "markdown", required: false }
 
-  # Global site settings you can edit from CMS
   - name: "settings"
     label: "Settings"
     files:

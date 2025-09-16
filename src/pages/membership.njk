@@ -5,8 +5,10 @@ permalink: "membership/index.html"
 pageBg: ""
 ---
 <section class="container mx-auto px-4 py-12">
-  <h1 class="text-4xl font-bold mb-6">Get membership</h1>
-  <p class="opacity-80 mb-8">Want to watch films with us on Sundays? Become a member in a minute.</p>
+  <h1 class="text-4xl font-bold mb-6">{{ title }}</h1>
+  <div class="prose max-w-none mb-8">
+    {{ body | safe }}
+  </div>
 
   <div class="card bg-base-200 shadow-xl">
     <div class="card-body">

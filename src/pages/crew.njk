@@ -5,8 +5,10 @@ permalink: "crew/index.html"
 pageBg: ""
 ---
 <section class="container mx-auto px-4 py-12">
-  <h1 class="text-4xl font-bold mb-6">Join the crew</h1>
-  <p class="opacity-80 mb-8">We’re a hands-on team that makes PHILM happen — programming, design, hosting screenings, comms, and more.</p>
+  <h1 class="text-4xl font-bold mb-6">{{ title }}</h1>
+  <div class="prose max-w-none mb-8">
+    {{ body | safe }}
+  </div>
 
   <div class="card bg-base-200 shadow-xl">
     <div class="card-body">

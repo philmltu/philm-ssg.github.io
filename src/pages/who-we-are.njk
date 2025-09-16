@@ -5,27 +5,61 @@ permalink: "who-we-are/index.html"
 pageBg: ""
 ---
 <section class="container mx-auto px-4 py-12">
-  <h1 class="text-4xl font-bold mb-8">Who we are</h1>
-  <p class="opacity-80 mb-10">Meet the people behind PHILM.</p>
-
-  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-    {% for m in team.members %}
-      <article class="card bg-base-200 shadow-xl">
-        <figure class="aspect-[4/3] overflow-hidden">
-          {% if m.photo %}
-            <img src="{{ m.photo }}" alt="{{ m.name }}" class="w-full h-full object-cover" loading="lazy" />
-          {% else %}
-            <div class="w-full h-full grid place-content-center opacity-60">No photo</div>
-          {% endif %}
-        </figure>
-        <div class="card-body">
-          <h3 class="card-title">{{ m.name }}</h3>
-          <p class="text-sm opacity-80">{{ m.role }}</p>
-          {% if m.bio %}
-            <p class="text-sm opacity-80 mt-3">{{ m.bio }}</p>
-          {% endif %}
-        </div>
-      </article>
-    {% endfor %}
+  <h1 class="text-4xl font-bold mb-8">{{ title }}</h1>
+  <div class="prose max-w-none mb-10">
+    {{ body | safe }}
   </div>
+
+  {# Prefer Markdown collection entries; fall back to team.json if none exist #}
+  {% set mdMembers = collections.team %}
+  {% if mdMembers and (mdMembers | length) > 0 %}
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {% for item in mdMembers %}
+        {% set m = item.data %}
+        <article class="card bg-base-200 shadow-xl">
+          <figure class="aspect-[4/3] overflow-hidden">
+            {% if m.photo %}
+              <img src="{{ m.photo }}" alt="{{ m.name }}" class="w-full h-full object-cover" loading="lazy" />
+            {% else %}
+              <div class="w-full h-full grid place-content-center opacity-60">No photo</div>
+            {% endif %}
+          </figure>
+          <div class="card-body">
+            <h3 class="card-title">{{ m.name }}</h3>
+            <p class="text-sm opacity-80">{{ m.role }}</p>
+            {% if item.templateContent %}
+              <div class="prose text-sm opacity-90 mt-3">{{ item.templateContent | safe }}</div>
+            {% endif %}
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  {% else %}
+    {# Fallback to src/_data/team.json structure: { members: [ {name, role, photo, bio, order?}, ... ] } #}
+    {% set jsonMembers = (team and team.members) or [] %}
+    {% if (jsonMembers | length) == 0 %}
+      <p class="opacity-70">No team members yet. Add some in Admin → Team.</p>
+    {% else %}
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {% for m in jsonMembers %}
+          <article class="card bg-base-200 shadow-xl">
+            <figure class="aspect-[4/3] overflow-hidden">
+              {% if m.photo %}
+                <img src="{{ m.photo }}" alt="{{ m.name }}" class="w-full h-full object-cover" loading="lazy" />
+              {% else %}
+                <div class="w-full h-full grid place-content-center opacity-60">No photo</div>
+              {% endif %}
+            </figure>
+            <div class="card-body">
+              <h3 class="card-title">{{ m.name }}</h3>
+              <p class="text-sm opacity-80">{{ m.role }}</p>
+              {% if m.bio %}
+                <div class="prose text-sm opacity-90 mt-3">{{ m.bio }}</div>
+              {% endif %}
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endif %}
 </section>
