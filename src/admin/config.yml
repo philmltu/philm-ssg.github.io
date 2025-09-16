@@ -54,6 +54,9 @@ collections:
           - { label: "Hero Subtitle", name: "heroSubtitle", widget: "string" }
           - { label: "Hero Button Text", name: "heroButtonText", widget: "string", default: "See schedule" }
           - { label: "Hero Background", name: "heroBg", widget: "image", required: false }
+          - { label: "Hitract URL (passive)", name: "hitractUrl", widget: "string" }      # ← new
+          - { label: "Active form URL", name: "activeFormUrl", widget: "string" }          # ← new
+
 
   # Edit header/footer/base directly in CMS (advanced)
   - name: "theme"

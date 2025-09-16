@@ -4,16 +4,17 @@
       <a href="{{ '/' | url }}" class="btn btn-ghost text-xl">{{ site.name }}</a>
     </div>
 
-    <div class="navbar-center hidden lg:flex">
+    <div class="navbar-center">
       <ul class="menu menu-horizontal px-1">
         <li><a href="{{ '/' | url }}">Home</a></li>
         <li><a href="{{ '/pages/about/' | url }}">About</a></li>
         <li><a href="{{ '/schedule/' | url }}">Schedule</a></li>
+        <li><a href="{{ '/join/' | url }}">Join</a></li>
       </ul>
     </div>
 
     <div class="navbar-end">
-      <a class="btn btn-primary" href="{{ '/join/' | url }}">Join</a>
+      {# keep right side empty / future icons #}
     </div>
   </div>
 </header>

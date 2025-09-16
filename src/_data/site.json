@@ -1,11 +1,12 @@
-
 {
   "name": "PHILM",
-  "description": "A film club that screens great movies every Sunday.",
+  "description": "Film club in Luleå.",
   "theme": "dark",
-
-  "heroTitle": "Sunday Screenings",
-  "heroSubtitle": "Carefully curated films every week. Join us for talks, snacks, and cinema vibes.",
+  "heroTitle": "PHILM Sundays",
+  "heroSubtitle": "Watch. Discuss. Repeat.",
   "heroButtonText": "See schedule",
-  "heroBg": "/uploads/hero.jpg" 
+  "heroBg": "/uploads/hero.jpg",
+  "hitractUrl": "https://hitract.se/your-philm-page",     
+  "activeFormUrl": "https://forms.gle/your-google-form"     
 }
+

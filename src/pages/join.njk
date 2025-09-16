@@ -1,16 +1,52 @@
 ---
-title: Join
+title: Join PHILM
 layout: layouts/base.njk
-permalink: "/join/index.html"
 ---
-<div class="container mx-auto px-4 py-16 prose prose-invert">
-  <h1>Join PHILM</h1>
-  <p>We screen movies every Sunday. Drop your email and we’ll send the weekly pick.</p>
-  <form class="mt-6 max-w-md">
-    <label class="form-control">
-      <span class="label-text mb-1">Email</span>
-      <input type="email" class="input input-bordered" placeholder="you@example.com" required>
-    </label>
-    <button class="btn btn-primary mt-4" type="submit">Subscribe</button>
-  </form>
-</div>
+<section class="container mx-auto px-4 py-12">
+  <h1 class="text-4xl font-bold mb-6">Join PHILM</h1>
+  <p class="opacity-80 mb-8">
+    Choose the path that matches you best. You can switch later if you want!
+  </p>
+
+  <div class="grid gap-6 md:grid-cols-2">
+    <!-- Passive membership -->
+    <div class="card bg-base-200 shadow-xl">
+      <div class="card-body">
+        <h2 class="card-title">Passive member</h2>
+        <p>
+          Just want to watch great movies with us on Sundays? Passive membership is perfect.
+        </p>
+        <ul class="list-disc ml-5 my-2 text-sm opacity-80">
+          <li>Sunday screenings</li>
+          <li>No obligations</li>
+          <li>Stay in the loop</li>
+        </ul>
+        <div class="card-actions justify-end">
+          <a href="{{ site.hitractUrl }}" target="_blank" rel="noopener" class="btn btn-primary">
+            Apply on Hitract
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active membership -->
+    <div class="card bg-base-200 shadow-xl">
+      <div class="card-body">
+        <h2 class="card-title">Active member</h2>
+        <p>
+          Help run PHILM — programming, design, hosting screenings, comms, and more.
+        </p>
+        <ul class="list-disc ml-5 my-2 text-sm opacity-80">
+          <li>Help choose films & plan events</li>
+          <li>Drive PHILM forward</li>
+          <li>Meet a hands-on crew</li>
+        </ul>
+        <div class="card-actions justify-end">
+          <a href="{{ site.activeFormUrl }}" target="_blank" rel="noopener" class="btn btn-secondary">
+            Apply via Google Form
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
