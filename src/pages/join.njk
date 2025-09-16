@@ -8,23 +8,30 @@ layout: layouts/base.njk
     Choose the path that matches you best. You can switch later if you want!
   </p>
 
+  {% set hitract = site.hitractUrl %}
+  {% set activeForm = site.activeFormUrl %}
+
   <div class="grid gap-6 md:grid-cols-2">
     <!-- Passive membership -->
     <div class="card bg-base-200 shadow-xl">
       <div class="card-body">
         <h2 class="card-title">Passive member</h2>
-        <p>
-          Just want to watch great movies with us on Sundays? Passive membership is perfect.
-        </p>
+        <p>Just want to watch great movies with us on Sundays? Passive is perfect.</p>
         <ul class="list-disc ml-5 my-2 text-sm opacity-80">
           <li>Sunday screenings</li>
           <li>No obligations</li>
           <li>Stay in the loop</li>
         </ul>
         <div class="card-actions justify-end">
-          <a href="{{ site.hitractUrl }}" target="_blank" rel="noopener" class="btn btn-primary">
-            Apply on Hitract
-          </a>
+          {% if hitract %}
+            <a href="{{ hitract | url }}" target="_blank" rel="noopener" class="btn btn-primary">
+              Apply on Hitract
+            </a>
+          {% else %}
+            <a class="btn btn-primary btn-disabled" aria-disabled="true" tabindex="-1">
+              Apply on Hitract
+            </a>
+          {% endif %}
         </div>
       </div>
     </div>
@@ -33,18 +40,22 @@ layout: layouts/base.njk
     <div class="card bg-base-200 shadow-xl">
       <div class="card-body">
         <h2 class="card-title">Active member</h2>
-        <p>
-          Help run PHILM — programming, design, hosting screenings, comms, and more.
-        </p>
+        <p>Help run PHILM — programming, design, screenings, comms, and more.</p>
         <ul class="list-disc ml-5 my-2 text-sm opacity-80">
           <li>Help choose films & plan events</li>
           <li>Drive PHILM forward</li>
           <li>Meet a hands-on crew</li>
         </ul>
         <div class="card-actions justify-end">
-          <a href="{{ site.activeFormUrl }}" target="_blank" rel="noopener" class="btn btn-secondary">
-            Apply via Google Form
-          </a>
+          {% if activeForm %}
+            <a href="{{ activeForm | url }}" target="_blank" rel="noopener" class="btn btn-secondary">
+              Apply via Google Form
+            </a>
+          {% else %}
+            <a class="btn btn-secondary btn-disabled" aria-disabled="true" tabindex="-1">
+              Apply via Google Form
+            </a>
+          {% endif %}
         </div>
       </div>
     </div>
