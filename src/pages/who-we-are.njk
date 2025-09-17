@@ -1,8 +1,15 @@
-{# Prefer Markdown collection entries; fall back to team.json if none exist #}
-{% set mdMembers = collections.team %}
-{% if mdMembers and (mdMembers | length) > 0 %}
+---
+title: Who we are
+layout: layouts/base.njk
+permalink: /who-we-are/
+---
+
+<h1 class="text-3xl font-bold mb-6">{{ title }}</h1>
+
+{% set members = collections.team %}
+{% if members and (members | length) > 0 %}
   <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-    {% for m in mdMembers %}
+    {% for m in members %}
       <article class="card bg-base-100 shadow-lg overflow-hidden">
         {% if m.data.photo %}
           <figure class="aspect-[1/1] bg-base-300">
@@ -18,22 +25,5 @@
     {% endfor %}
   </div>
 {% else %}
-  {% if team and team.members %}
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {% for m in team.members %}
-        <article class="card bg-base-100 shadow-lg overflow-hidden">
-          {% if m.photo %}
-            <figure class="aspect-[1/1] bg-base-300">
-              <img src="{{ m.photo | url }}" alt="{{ m.name }}" loading="lazy" />
-            </figure>
-          {% endif %}
-          <div class="card-body">
-            <h3 class="card-title">{{ m.name }}</h3>
-            {% if m.role %}<p class="text-sm opacity-80">{{ m.role }}</p>{% endif %}
-            {% if m.bio %}<div class="prose text-sm opacity-90 mt-3">{{ m.bio }}</div>{% endif %}
-          </div>
-        </article>
-      {% endfor %}
-    </div>
-  {% endif %}
+  <p>No members yet.</p>
 {% endif %}
