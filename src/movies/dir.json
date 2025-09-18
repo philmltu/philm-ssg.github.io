@@ -1,6 +1,6 @@
 {
   "layout": "layouts/movie.njk",
   "eleventyComputed": {
-    "permalink": "movies/{{ page.fileSlug }}/index.html"
+    "permalink": "movies/{{ date | date('yyyy-LL-dd') }}-{{ page.fileSlug }}/index.html"
   }
 }

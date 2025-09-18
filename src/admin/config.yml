@@ -15,7 +15,7 @@ collections:
     create: true
     extension: "md"
     slug: "{{slug}}"
-    delete: false
+    # delete: false   <-- REMOVE this line if present
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
@@ -25,15 +25,16 @@ collections:
       - { label: "Body", name: "body", widget: "markdown", required: false }
 
   - name: "team"
-    label: "Team"
+    label: "Team Member"
     folder: "src/team"
     create: true
     extension: "md"
     slug: "{{slug}}"
-    delete: false
+    # delete: false   <-- REMOVE this line if present
     fields:
       - { label: "Name",  name: "name",  widget: "string" }
       - { label: "Role",  name: "role",  widget: "string", required: false }
       - { label: "Photo", name: "photo", widget: "image", required: false }
       - { label: "Order", name: "order", widget: "number", valueType: "int", min: 0, default: 0 }
       - { label: "Bio",   name: "body",  widget: "markdown", required: false }
+
