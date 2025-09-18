@@ -5,7 +5,10 @@
     </div>
 
     <div class="navbar-center">
-      <ul class="menu menu-horizontal px-1">
+      <ul class="menu menu-horizontal px-1 items-center gap-2">
+        <li>
+          <a href="/membership/" class="btn btn-primary">Get membership</a>
+        </li>
         <li><a href="{{ '/' | url }}">Home</a></li>
         <li><a href="{{ '/pages/about/' | url }}">About</a></li>
         <li><a href="{{ '/schedule/' | url }}">Schedule</a></li>
@@ -16,7 +19,7 @@
     </div>
 
     <div class="navbar-end">
-      <a href="/membership/" class="btn btn-primary">Get membership</a>
+      {# intentionally empty now #}
     </div>
   </div>
 </header>

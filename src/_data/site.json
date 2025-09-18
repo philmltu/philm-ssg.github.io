@@ -3,13 +3,12 @@
   "description": "Film club in Luleå.",
   "theme": "dark",
   "heroTitle": "PHILM Sundays",
-  "heroSubtitle": "Watch. Discuss. Repeat.",
+  "heroSubtitle": "Cheaper than theaters, cozier than streaming services.",
   "heroButtonText": "See schedule",
-  "heroBg": "/uploads/hero.jpg",
+  "heroBg": "/uploads/background.png",
 
   "hitractUrl": "https://hitract.se/your-philm-page",
   "activeFormUrl": "https://forms.gle/your-google-form",
-  "bookingFormUrl": "https://forms.gle/your-booking-form",
+  "bookingFormUrl": "https://forms.gle/your-booking-form"
 
-  "pageBg": ""
 }

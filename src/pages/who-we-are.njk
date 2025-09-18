@@ -4,26 +4,33 @@ layout: layouts/base.njk
 permalink: /who-we-are/
 ---
 
-<h1 class="text-3xl font-bold mb-6">{{ title }}</h1>
+<div class="container mx-auto px-4 py-16">
+  <h1 class="text-4xl font-bold mb-6">{{ title }}</h1>
 
-{% set members = collections.team %}
-{% if members and (members | length) > 0 %}
   <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-    {% for m in members %}
-      <article class="card bg-base-100 shadow-lg overflow-hidden">
+    {% for m in collections.team %}
+      <article class="card bg-base-100 shadow-lg hover:shadow-xl transition overflow-hidden">
         {% if m.data.photo %}
-          <figure class="aspect-[1/1] bg-base-300">
-            <img src="{{ m.data.photo | url }}" alt="{{ m.data.name }}" loading="lazy" />
+          <figure class="aspect-[3/4] bg-base-300">
+            <img
+              src="{{ m.data.photo | url }}"
+              alt="{{ m.data.name }}"
+              loading="lazy"
+              class="object-cover w-full h-full" />
           </figure>
         {% endif %}
         <div class="card-body">
-          <h3 class="card-title">{{ m.data.name }}</h3>
-          {% if m.data.role %}<p class="text-sm opacity-80">{{ m.data.role }}</p>{% endif %}
-          <div class="prose text-sm opacity-90 mt-3">{{ m.templateContent | safe }}</div>
+          <h2 class="card-title">{{ m.data.name }}</h2>
+          {% if m.data.role %}
+            <p class="opacity-80">{{ m.data.role }}</p>
+          {% endif %}
+          {% if m.templateContent %}
+            <div class="prose text-sm opacity-90 line-clamp-3 mt-1">
+              {{ m.templateContent | safe }}
+            </div>
+          {% endif %}
         </div>
       </article>
     {% endfor %}
   </div>
-{% else %}
-  <p>No members yet.</p>
-{% endif %}
+</div>
