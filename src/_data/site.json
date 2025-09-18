@@ -9,6 +9,6 @@
 
   "hitractUrl": "https://hitract.se/your-philm-page",
   "activeFormUrl": "https://forms.gle/your-google-form",
-  "bookingFormUrl": "https://forms.gle/your-booking-form"
-
+  "bookingFormUrl": "https://forms.gle/your-booking-form",
+  "logo": "/uploads/philm-logo.png"
 }

@@ -1,21 +1,58 @@
-<header class="navbar bg-[#00102E] text-white border-b border-base-200 sticky top-0 z-50">
-  <div class="container mx-auto px-4 flex items-center gap-10">
-    <!-- Logo -->
-    <a href="{{ '/' | url }}" class="flex-shrink-0 flex items-center">
-      <img src="/uploads/philm-logo.png" alt="{{ site.name }}" class="h-28 w-auto" />
-    </a>
+<header class="bg-[#00102E] text-white sticky top-0 z-50">
+  <div class="container mx-auto px-4">
+    <div class="flex items-center justify-between py-2">
+      {# LOGO (left) — avoid any .btn/.navbar wrappers that cap height #}
+      <a href="{{ '/' | url }}" class="shrink-0 flex items-center leading-none">
+        <img
+          src="{{ site.logo or '/uploads/philm-logo.png' }}"
+          alt="{{ site.name }}"
+          class="block h-14 md:h-20 lg:h-24 w-auto align-middle"
+          style="max-height:none" />
+      </a>
 
-    <!-- Navigation -->
-    <ul class="menu menu-horizontal px-1 flex-1 items-center gap-8 text-lg">
-      <li>
-        <a href="/membership/" class="btn btn-primary">Get membership</a>
-      </li>
-      <li><a href="{{ '/' | url }}">Home</a></li>
-      <li><a href="{{ '/pages/about/' | url }}">About</a></li>
-      <li><a href="{{ '/schedule/' | url }}">Schedule</a></li>
-      <li><a href="/crew/">Join the crew</a></li>
-      <li><a href="/book-us/">Book us</a></li>
-      <li><a href="/who-we-are/">Who we are</a></li>
-    </ul>
+      {# DESKTOP NAV (right) #}
+      <ul class="hidden md:flex menu menu-horizontal items-center gap-4 text-lg">
+        <li>
+          <a href="/membership/" class="btn btn-primary">Get membership</a>
+        </li>
+        <li><a href="{{ '/' | url }}">Home</a></li>
+        <li><a href="{{ '/schedule/' | url }}">Schedule</a></li>
+        <li class="relative">
+          <details class="dropdown dropdown-end">
+            <summary class="m-0">About us</summary>
+            <ul class="p-2 bg-base-100 text-base-content rounded-box min-w-48">
+              <li><a href="/book-us/">Book us</a></li>
+              <li><a href="/crew/">Join the crew</a></li>
+              <li><a href="/who-we-are/">Who we are</a></li>
+            </ul>
+          </details>
+        </li>
+      </ul>
+
+      {# MOBILE MENU (hamburger) #}
+      <div class="md:hidden dropdown dropdown-end">
+        <label tabindex="0" class="btn btn-ghost" aria-label="Open menu">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </label>
+        <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 text-base-content rounded-box w-56">
+          <li><a href="/membership/" class="btn btn-primary w-full">Get membership</a></li>
+          <li><a href="{{ '/' | url }}">Home</a></li>
+          <li><a href="{{ '/schedule/' | url }}">Schedule</a></li>
+          <li>
+            <details>
+              <summary>About us</summary>
+              <ul>
+                <li><a href="/book-us/">Book us</a></li>
+                <li><a href="/crew/">Join the crew</a></li>
+                <li><a href="/who-we-are/">Who we are</a></li>
+              </ul>
+            </details>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </header>
