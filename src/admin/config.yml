@@ -14,7 +14,7 @@ collections:
     folder: "src/movies"
     create: true
     extension: "md"
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" 
+    slug: "{{fields.date | date('YYYY-MM-DD')}}-{{slug}}"
     # delete: false 
     fields:
       - { label: "Title", name: "title", widget: "string" }
@@ -30,7 +30,7 @@ collections:
     folder: "src/team"
     create: true
     extension: "md"
-    slug: "{{slug}}"
+    slug: "{{name}}"
     # delete: false   <-- REMOVE this line if present
     fields:
       - { label: "Name",  name: "name",  widget: "string" }
