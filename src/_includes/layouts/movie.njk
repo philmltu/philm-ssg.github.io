@@ -9,7 +9,14 @@ layout: layouts/base.njk
   </header>
 
   {% if poster %}
-    <img class="rounded-2xl mb-8 w-full max-w-3xl aspect-[16/9] object-cover" src="{{ poster | url }}" alt="{{ title }} poster">
+  <figure class="mb-8 w-full max-w-lg bg-base-300 rounded-2xl overflow-hidden">
+    <img
+      src="{{ poster | url }}"
+      alt="{{ title }} poster"
+      class="block w-full h-auto object-contain"
+      loading="lazy" />
+  </figure>
+
   {% endif %}
 
   <div class="prose prose-invert max-w-none">
@@ -18,8 +25,18 @@ layout: layouts/base.njk
 
   {% if runtime or director %}
     <dl class="mt-8 grid gap-2 text-sm opacity-80">
-      {% if director %}<div><dt class="font-semibold inline">Director:</dt> <dd class="inline">{{ director }}</dd></div>{% endif %}
-      {% if runtime %}<div><dt class="font-semibold inline">Runtime:</dt> <dd class="inline">{{ runtime }}</dd></div>{% endif %}
+      {% if director %}
+        <div>
+          <dt class="font-semibold inline">Director:</dt>
+          <dd class="inline">{{ director }}</dd>
+        </div>
+      {% endif %}
+      {% if runtime %}
+        <div>
+          <dt class="font-semibold inline">Runtime:</dt>
+          <dd class="inline">{{ runtime }}</dd>
+        </div>
+      {% endif %}
     </dl>
   {% endif %}
 </article>

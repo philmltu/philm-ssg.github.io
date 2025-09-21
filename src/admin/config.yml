@@ -14,8 +14,8 @@ collections:
     folder: "src/movies"
     create: true
     extension: "md"
-    slug: "{{slug}}"
-    # delete: false   <-- REMOVE this line if present
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" 
+    # delete: false 
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
@@ -23,6 +23,7 @@ collections:
       - { label: "Runtime", name: "runtime", widget: "string", required: false }
       - { label: "Tagline", name: "tagline", widget: "string", required: false }
       - { label: "Body", name: "body", widget: "markdown", required: false }
+      - { label: "SKRIV INTE NÅGOT HÄR!!)", name: "layout", widget: "string", default: "layouts/movie.njk", required: false }
 
   - name: "team"
     label: "Team Member"
